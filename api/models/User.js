@@ -25,9 +25,9 @@ module.exports = {
         type: 'STRING',
         required: true
     },
-    isAdmin: {
-        type: 'BOOLEAN',
-        defaultsTo: false
+    role: {
+        type: 'STRING',
+        defaultsTo: 'user'
     },
     isDeleted: {
         type: 'BOOLEAN',
