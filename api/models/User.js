@@ -48,6 +48,7 @@ module.exports = {
             cb(null, user);
         });
     });
-  }
+  },
+
 };
 
