@@ -35,6 +35,7 @@ module.exports = {
     },
     toJSON: function () {
         var obj = this.toObject();
+        //this will delete password keyvalue from returned json
         delete obj.password;
         return obj;
     }
@@ -48,7 +49,6 @@ module.exports = {
             cb(null, user);
         });
     });
-  },
-
+  }
 };
 

@@ -40,6 +40,9 @@ module.exports.policies = {
   QuoteController: {
       getQuote: true,
       getProtectedQuote: "hasToken"
+  },
+  UserRoleController: {
+      getRole: true
   }
 
   /***************************************************************************
