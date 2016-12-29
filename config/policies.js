@@ -29,20 +29,24 @@ module.exports.policies = {
   //'*': true,
   
   
-  //zuhra
-  '*': "hasToken",
+  //default access to controllers is false unless it specified by other policy
+  '*': false,
   UserController: {
-      register: true
+      register: true,
+      getAllUser: ["hasToken", "isOfficer"]
   },
   AuthController: {
-      '*': true
+      //'*': true
+      login: true,
+      validate_token: "hasToken",
+      logout: true
   },
   QuoteController: {
       getQuote: true,
-      getProtectedQuote: "hasToken"
+      getProtectedQuote: ["hasToken"]
   },
   UserRoleController: {
-      getRole: true
+      getRole: ["hasToken", "isAdmin"]
   }
 
   /***************************************************************************
