@@ -44,7 +44,8 @@ module.exports.routes = {
   'GET /quote/open' : 'QuoteController.getQuote',
   'GET /quote/protected' : 'QuoteController.getProtectedQuote',
 
-  'GET /role' : 'UserRoleController.getRole'
+  'GET /admin/get-role' : 'UserRoleController.getRole',
+  'GET /officer/get-all-user' : 'UserController.getAllUser'
 
   /***************************************************************************
   *                                                                          *

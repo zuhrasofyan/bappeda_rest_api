@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var EmailAddresses = require('machinepack-emailaddresses');
+var jwt = require('jsonwebtoken');
+var secret = sails.config.secret;
 
 module.exports = {
     register: function (req, res) {
@@ -55,6 +57,19 @@ module.exports = {
 
         
         //res.send({message: 'TODO: register User'});
+    },
+
+    //enable to show all user
+    getAllUser: function (req, res) {
+        User.find().exec(function (err, result){
+            if (err) {
+                return res.serverError();
+            } else if (!result) {
+                return res.notFound(undefined)
+            } else {
+                return res.json(result);
+            }
+        })
     }
 };
 
