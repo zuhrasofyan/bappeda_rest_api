@@ -9,6 +9,9 @@ A fork from sails-passport with the intention of providing required data and RES
 * run `npm install`
 * run `sails lift`
 
+### Error Info:
+* if you have `npm install` with `bcrypt` error such as `node-gyp` build error, it is okay, since I already subtitute bcrypt with `bcrypt-nodejs` in the app implementation. If you are perfectionist, just delete `bcrypt` from `package.json` dependency and you all set.
+
 ### DISCLAIMER! 
 This is as minimal as it can be. Use it as your boilerplate to startup your REST API server, and as your playground to understand sailsjs concept + setup Passport authentification in server.
 For Accessing the functionality, you can use postman or better yet, download my other repo [angular-passport](https://github.com/zuhrasofyan/angular-passport).
