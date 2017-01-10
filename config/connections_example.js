@@ -40,13 +40,13 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-  mysqlServer: {
-    adapter: 'sails-mysql',
-    host: 'localhost',
-    user: 'bappeda_api', //optional
-    password: 'bappeda_api', //optional
-    database: 'bappeda_api' //optional
-  },
+  // mysqlServer: {
+  //   adapter: 'sails-mysql',
+  //   host: 'localhost',
+  //   user: 'bappeda_api', //optional
+  //   password: 'bappeda_api', //optional
+  //   database: 'bappeda_api' //optional
+  // },
 
 
   /***************************************************************************
