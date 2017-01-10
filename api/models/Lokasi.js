@@ -1,11 +1,12 @@
 /**
- * Dasar_desa.js
+ * Lokasi.js
  *
- * @description :: Model for table dasar_desa.
+ * @description :: Model for table lokasi that contains all point locations
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
+
   //use the format defined in database instead
   migrate: 'safe',
 
@@ -14,21 +15,25 @@ module.exports = {
   autoUpdatedAt: false,
 
   attributes: {
-    DESA_ID: {
+    ID: {
       type: 'INTEGER',
       primaryKey: true,
       required: true,
       unique: true
     },
-    PROVINSI_ID: {
-      type: 'INTEGER',
+    KECAMATAN: {
+      type: 'STRING',
       required: true
     },
-    KAB_ID: {
-      type: 'INTEGER',
+    DESA: {
+      type: 'STRING',
       required: true
     },
     KECAMATAN_ID: {
+      type: 'INTEGER',
+      required: true
+    },
+    DESA_ID: {
       type: 'INTEGER',
       required: true
     },
@@ -36,18 +41,24 @@ module.exports = {
       type: 'STRING',
       required: true
     },
-    KELILING_M2: {
-      type: 'FLOAT'
-    },
-    LUAS_M2: {
-      type: 'FLOAT'
-    },
     LINTANG: {
       type: 'FLOAT'
     },
     BUJUR: {
       type: 'FLOAT'
-    }
+    },
+    KATEGORI: {
+      type: 'STRING',
+      required: true
+    },
+    SUB_KATEGORI: {
+      type: 'STRING',
+      required: true
+    },
+    ALAMAT: {
+      type: 'STRING',
+      required: true
+    },
   }
 };
 
