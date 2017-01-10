@@ -49,7 +49,9 @@ module.exports.routes = {
 
   'GET /desa/all-desa': 'DesaController.getDesa',
 
-  'GET /lokasi/:kategori': 'LokasiController.getLokasiOnKategori'
+  'GET /lokasi/:kategori': 'LokasiController.getLokasiOnKategori',
+  'GET /lokasi/:kategori/:subKategori': 'LokasiController.getLokasiOnSubKategori'
+  
 
   /***************************************************************************
   *                                                                          *

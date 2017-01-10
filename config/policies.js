@@ -52,7 +52,8 @@ module.exports.policies = {
       getDesa: true
   },
   LokasiController: {
-      getLokasiOnKategori: true
+      getLokasiOnKategori: true,
+      getLokasiOnSubKategori: true
   }
 
   /***************************************************************************
