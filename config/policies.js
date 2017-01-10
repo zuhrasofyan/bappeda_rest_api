@@ -47,6 +47,12 @@ module.exports.policies = {
   },
   UserRoleController: {
       getRole: ["hasToken", "isAdmin"]
+  },
+  DesaController: {
+      getDesa: true
+  },
+  LokasiController: {
+      getLokasiOnKategori: true
   }
 
   /***************************************************************************

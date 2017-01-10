@@ -45,7 +45,11 @@ module.exports.routes = {
   'GET /quote/protected' : 'QuoteController.getProtectedQuote',
 
   'GET /admin/get-role' : 'UserRoleController.getRole',
-  'GET /officer/get-all-user' : 'UserController.getAllUser'
+  'GET /officer/get-all-user' : 'UserController.getAllUser',
+
+  'GET /desa/all-desa': 'DesaController.getDesa',
+
+  'GET /lokasi/:kategori': 'LokasiController.getLokasiOnKategori'
 
   /***************************************************************************
   *                                                                          *
