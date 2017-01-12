@@ -6,6 +6,15 @@
  */
 
 module.exports = {
+    getLokasi: function (req, res) {
+        Lokasi.find().exec(function(err, result){
+            if (err) {
+                return res.notFound();
+            } else {
+                return res.json(result);
+            } 
+        })
+    },
 	getLokasiOnKategori: function (req, res) {
         var a = req.params.kategori;
         Lokasi.find({KATEGORI: a}).exec(function(err, result){

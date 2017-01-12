@@ -52,6 +52,7 @@ module.exports.policies = {
       getDesa: true
   },
   LokasiController: {
+      getLokasi: true,
       getLokasiOnKategori: true,
       getLokasiOnSubKategori: true
   }
