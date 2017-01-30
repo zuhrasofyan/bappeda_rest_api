@@ -7,13 +7,12 @@
 
 module.exports = {
 	getRole: function (req, res) {
-        Userrole.find().exec(function(err, result){
+        UserRole.find().exec(function(err, result){
             if (err) {
                 return res.notFound();
             } else {
                 return res.json(result);
-            } 
+            }
         })
     }
 };
-
