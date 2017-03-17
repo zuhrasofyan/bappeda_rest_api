@@ -9,7 +9,8 @@ module.exports = {
 
   attributes: {
   	judul: {
-  		type: 'STRING'
+  		type: 'STRING',
+      required: true
   	},
   	tanggal: {
   		type: 'DATE'

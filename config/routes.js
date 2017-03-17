@@ -51,7 +51,10 @@ module.exports.routes = {
 
   'GET /lokasi': 'LokasiController.getLokasi',
   'GET /lokasi/:kategori': 'LokasiController.getLokasiOnKategori',
-  'GET /lokasi/:kategori/:subKategori': 'LokasiController.getLokasiOnSubKategori'
+  'GET /lokasi/:kategori/:subKategori': 'LokasiController.getLokasiOnSubKategori',
+
+  //RENAKSI
+  'POST /renaksi/tambah-data' : 'RenaksiController.addRenaksi'
   
 
   /***************************************************************************

@@ -55,6 +55,9 @@ module.exports.policies = {
       getLokasi: true,
       getLokasiOnKategori: true,
       getLokasiOnSubKategori: true
+  },
+  RenaksiController: {
+      addRenaksi: ["hasToken", "isOfficer"]
   }
 
   /***************************************************************************
