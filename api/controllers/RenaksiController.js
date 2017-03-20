@@ -7,7 +7,7 @@
 
 module.exports = {
 	addRenaksi: function (req, res) {
-		var judul = req.param('judul'), 
+		var kategori = req.param('kategori'),
 			tanggal = req.param('tanggal'),
 			masalah = req.param('masalah'),
 			rekomendasi = req.param('rekomendasi'),
@@ -17,10 +17,11 @@ module.exports = {
 			targetLastYear = req.param('targetLastYear'),
 			targetThisYear = req.param('targetThisYear'),
 			statusLastYear = req.param('statusLastYear'),
-			keterangan = req.param('keterangan');
+			keterangan = req.param('keterangan'),
+			pembuat = req.param('pembuat');
 
 		Renaksi.create({
-			judul: judul,
+			kategori: kategori,
 			tanggal: tanggal,
 			masalah: masalah,
 			rekomendasi: rekomendasi,
@@ -30,14 +31,14 @@ module.exports = {
 			target_last_year: targetLastYear,
 			target_this_year: targetThisYear,
 			status_last_year: statusLastYear,
-			keterangan: keterangan
+			keterangan: keterangan,
+			pembuat: pembuat
 		}). exec(function(err, result){
 			if (err) {
 				return res.serverError(err);
 			} else {
 				return res.ok();
 			}
-		})
+		});
 	}
 };
-

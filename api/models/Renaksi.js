@@ -8,7 +8,7 @@
 module.exports = {
 
   attributes: {
-  	judul: {
+  	kategori: {
   		type: 'STRING',
       required: true
   	},
@@ -41,7 +41,9 @@ module.exports = {
   	},
   	keterangan: {
   		type: 'TEXT'
-  	}
+  	},
+    pembuat: {
+      type: 'STRING'
+    }
   }
 };
-
