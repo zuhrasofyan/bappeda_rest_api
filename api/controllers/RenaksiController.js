@@ -53,6 +53,16 @@ module.exports = {
 				return res.json(result);
 			}
 		});
+	},
+
+	getRadKategori: function(req, res) {
+		RenaksiKategori.find().exec(function(err, katResult){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(katResult);
+			}
+		});
 	}
-	
+
 };
