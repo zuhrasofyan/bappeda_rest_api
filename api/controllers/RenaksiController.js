@@ -42,5 +42,17 @@ module.exports = {
 				return res.ok();
 			}
 		});
+	},
+
+	getRadDataTahunan: function (req, res) {
+		var tahun = req.param('tahun');
+		Renaksi.find({tahun: tahun}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		});
 	}
+	
 };
