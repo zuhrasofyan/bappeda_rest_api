@@ -9,6 +9,7 @@ module.exports = {
 	addRenaksi: function (req, res) {
 		var kategori = req.param('kategori'),
 			tanggal = req.param('tanggal'),
+			tahun = req.param('tahun'),
 			masalah = req.param('masalah'),
 			rekomendasi = req.param('rekomendasi'),
 			rencanaAksi = req.param('rencanaAksi'),
@@ -23,6 +24,7 @@ module.exports = {
 		Renaksi.create({
 			kategori: kategori,
 			tanggal: tanggal,
+			tahun: tahun,
 			masalah: masalah,
 			rekomendasi: rekomendasi,
 			rencana_aksi: rencanaAksi,

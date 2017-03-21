@@ -15,6 +15,9 @@ module.exports = {
   	tanggal: {
   		type: 'DATE'
   	},
+    tahun: {
+      type: 'INTEGER'
+    },
   	masalah: {
   		type: 'TEXT'
   	},
