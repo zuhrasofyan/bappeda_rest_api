@@ -7,7 +7,7 @@
 
 module.exports = {
 	addRenaksi: function (req, res) {
-		var kategori = req.param('kategori'),
+		var nomor = req.param('nomor'),
 			tanggal = req.param('tanggal'),
 			tahun = req.param('tahun'),
 			masalah = req.param('masalah'),
@@ -22,7 +22,7 @@ module.exports = {
 			pembuat = req.param('pembuat');
 
 		Renaksi.create({
-			kategori: kategori,
+			kategori: nomor,
 			tanggal: tanggal,
 			tahun: tahun,
 			masalah: masalah,
@@ -46,7 +46,7 @@ module.exports = {
 
 	getRadDataTahunan: function (req, res) {
 		var tahun = req.param('tahun');
-		Renaksi.find({tahun: tahun}).exec(function(err, result){
+		RenaksiKategori.find().populate('renaksi', {where: {tahun:tahun}}).exec(function(err, result){
 			if (err) {
 				return res.serverError(err);
 			} else {
