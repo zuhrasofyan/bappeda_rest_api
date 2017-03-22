@@ -9,8 +9,7 @@ module.exports = {
 
   attributes: {
   	kategori: {
-  		type: 'STRING',
-      required: true
+  		model: 'renaksiKategori'
   	},
   	tanggal: {
   		type: 'DATE'

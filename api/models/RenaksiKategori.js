@@ -15,7 +15,11 @@ module.exports = {
   	},
   	kategori: {
   		type: 'STRING'
-  	}
+  	},
+    renaksi: {
+      collection: 'renaksi',
+      via: 'kategori'
+    }
 
   },
   autoPK: false,
@@ -23,4 +27,3 @@ module.exports = {
   autoUpdatedAt: false
 
 };
-
