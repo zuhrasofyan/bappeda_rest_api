@@ -27,8 +27,8 @@ module.exports.policies = {
   ***************************************************************************/
 
   //'*': true,
-
-
+  
+  
   //default access to controllers is false unless it specified by other policy
   '*': false,
   UserController: {
@@ -55,12 +55,6 @@ module.exports.policies = {
       getLokasi: true,
       getLokasiOnKategori: true,
       getLokasiOnSubKategori: true
-  },
-  RenaksiController: {
-      addRenaksi: ["hasToken", "isOfficer"],
-      editRenaksi: ["hasToken", "isOfficer"],
-      getRadDataTahunan: ["hasToken"],
-      getRadKategori: true
   }
 
   /***************************************************************************
