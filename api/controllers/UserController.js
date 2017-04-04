@@ -15,13 +15,13 @@ module.exports = {
 
         //validate request
         if (_.isUndefined(req.param('email'))) {  
-            return res.badRequest('An email address is required!'); 
+            return res.badRequest('An email address is required!');  
         }
         if (_.isUndefined(req.param('password'))) {
             return res.badRequest('A password is required');
         }
         if (req.param('password').length < 6) {
-            return res.badRequest('A password must be at least 6 character');
+            return res.badRequest('A password must be at least 6 character')
         }
         EmailAddresses.validate({
             string: email
@@ -40,22 +40,22 @@ module.exports = {
                     } else if (result) {
                         return res.badRequest('Email already used!');
                     } else {
-
+                        
                         User.create({username:email, email:email, password:password}).exec(function (err, result){
                             if (err) {
                                 return res.serverError(err);
                                 //return res.badRequest('Error create user');
                             }
                             return res.ok();
-                        });
+                        })
                     }
                 });
             }
 
-        });
+        })
 
 
-
+        
         //res.send({message: 'TODO: register User'});
     },
 
@@ -65,10 +65,11 @@ module.exports = {
             if (err) {
                 return res.serverError();
             } else if (!result) {
-                return res.notFound(undefined);
+                return res.notFound(undefined)
             } else {
                 return res.json(result);
             }
-        });
+        })
     }
 };
+

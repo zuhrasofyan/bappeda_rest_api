@@ -12,8 +12,8 @@ module.exports = {
                 return res.notFound();
             } else {
                 return res.json(result);
-            }
-        });
+            } 
+        })
     },
 	getLokasiOnKategori: function (req, res) {
         var a = req.params.kategori;
@@ -22,8 +22,8 @@ module.exports = {
                 return res.notFound();
             } else {
                 return res.json(result);
-            }
-        });
+            } 
+        })
     },
     getLokasiOnSubKategori: function (req, res) {
         var b = req.params.subKategori;
@@ -33,8 +33,9 @@ module.exports = {
                 return res.notFound();
             } else {
                 return res.json(result);
-            }
-        });
+            } 
+        })
     }
 
 };
+
