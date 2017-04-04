@@ -12,8 +12,7 @@ module.exports = {
                 return res.notFound();
             } else {
                 return res.json(result);
-            } 
-        })
+            }
+        });
     }
 };
-
