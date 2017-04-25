@@ -41,6 +41,9 @@ module.exports = {
   	status_last_year: {
   		type: 'TEXT'
   	},
+		persentasi_capaian: {
+			type: 'INTEGER'
+		},
   	keterangan: {
   		type: 'TEXT'
   	},

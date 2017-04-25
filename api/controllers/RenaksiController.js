@@ -18,6 +18,7 @@ module.exports = {
 			targetLastYear = req.param('targetLastYear'),
 			targetThisYear = req.param('targetThisYear'),
 			statusLastYear = req.param('statusLastYear'),
+			persentasiCapaian = req.param('persentasiCapaian'),
 			keterangan = req.param('keterangan'),
 			pembuat = req.param('pembuat');
 
@@ -33,6 +34,7 @@ module.exports = {
 			target_last_year: targetLastYear,
 			target_this_year: targetThisYear,
 			status_last_year: statusLastYear,
+			persentasi_capaian: persentasiCapaian,
 			keterangan: keterangan,
 			pembuat: pembuat
 		}). exec(function(err, result){
@@ -57,6 +59,7 @@ module.exports = {
 			targetLastYear = req.param('targetLastYear'),
 			targetThisYear = req.param('targetThisYear'),
 			statusLastYear = req.param('statusLastYear'),
+			persentasiCapaian = req.param('persentasiCapaian'),
 			keterangan = req.param('keterangan');
 		var renaksi = {
 			kategori: kategori,
@@ -69,6 +72,7 @@ module.exports = {
 			target_last_year: targetLastYear,
 			target_this_year: targetThisYear,
 			status_last_year: statusLastYear,
+			persentasi_capaian: persentasiCapaian,
 			keterangan: keterangan,
 		};
 		Renaksi.update({id:id}, renaksi).exec(function(err, result){
