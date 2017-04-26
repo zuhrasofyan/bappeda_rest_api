@@ -29,6 +29,9 @@ module.exports = {
         type: 'STRING',
         defaultsTo: 'user'
     },
+    avatarImage: {
+        type: 'STRING'
+    },
     isDeleted: {
         type: 'BOOLEAN',
         defaultsTo: false
