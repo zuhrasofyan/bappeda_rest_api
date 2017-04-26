@@ -35,4 +35,6 @@ module.exports = {
   //   level: "silent"
   // }
 
+  appUrl: 'https://bappeda.bandaacehkota.go.id/service/kpk'
+
 };
