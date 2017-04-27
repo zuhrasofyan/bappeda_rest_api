@@ -36,13 +36,17 @@ module.exports.routes = {
   //   view: 'homepage'
   // }
 
-  //this is, combined with disabling blueprints will restrict access to the required action based on controller
+  /* This is, combined with disabling blueprints will restrict access to the required action based on controller */
   'POST /auth/login': 'AuthController.login',
   'GET /auth/validate_token' : 'AuthController.validate_token',
   'GET /auth/logout': 'AuthController.logout',
   'POST /register' : 'UserController.register',
   'GET /quote/open' : 'QuoteController.getQuote',
   'GET /quote/protected' : 'QuoteController.getProtectedQuote',
+  
+  // USER MANAGEMENT
+  'POST /user/avatar/:id' : 'UserController.uploadAvatar',
+  'GET /user/avatar/:id' : 'UserController.avatar',
 
   'GET /admin/get-role' : 'UserRoleController.getRole',
   'GET /officer/get-all-user' : 'UserController.getAllUser',
@@ -53,7 +57,7 @@ module.exports.routes = {
   'GET /lokasi/:kategori': 'LokasiController.getLokasiOnKategori',
   'GET /lokasi/:kategori/:subKategori': 'LokasiController.getLokasiOnSubKategori',
 
-  //RENAKSI
+  // RENAKSI
   'POST /renaksi/tambah-data' : 'RenaksiController.addRenaksi',
   'PATCH /renaksi/edit-data/:id' : 'RenaksiController.editRenaksi',
   'GET /renaksi/get-rad-data/:tahun' : 'RenaksiController.getRadDataTahunan',

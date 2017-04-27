@@ -29,7 +29,10 @@ module.exports = {
         type: 'STRING',
         defaultsTo: 'user'
     },
-    avatarImage: {
+    avatarUrl: {
+        type: 'STRING'
+    },
+    avatarFd: {
         type: 'STRING'
     },
     isDeleted: {
