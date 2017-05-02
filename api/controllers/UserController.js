@@ -6,6 +6,7 @@
  */
 var EmailAddresses = require('machinepack-emailaddresses');
 var jwt = require('jsonwebtoken');
+var fs = require('fs');
 var secret = sails.config.secret;
 
 module.exports = {
@@ -80,6 +81,27 @@ module.exports = {
         //extract extension
         var extension = filename.substr(filename.lastIndexOf('.')+1).toLowerCase().toString();
 
+        // Before upload new avatar, check and delete previous avatar file from system if exist.
+        User.findOne(userId).exec(function(err, user){
+            if (err) {return res.negotiate(err);}
+            if (!user) {return res.badRequest();}
+            if (user.avatarFd) {
+                fs.stat(user.avatarFd, function (err, result){
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        fs.unlink(user.avatarFd, function (err, res){
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('file deleted');
+                            }
+                        })
+                    }
+                })
+            }
+        });
+
         req.file('avatar').upload({
             // max size: ~2 MB
             maxBytes: 2000000,
@@ -99,6 +121,8 @@ module.exports = {
             if ((extension != "jpg") && (extension != "jpeg") && (extension != "png")) {
                 return res.badRequest('Format gambar yang dibolehkan adalah jpeg, jpg atau png');
             }
+
+            
 
             // Save the 'fd' and the url where avatar for a user can be accessed
             User.update(userId, {
