@@ -45,7 +45,7 @@ module.exports.routes = {
   'GET /quote/protected' : 'QuoteController.getProtectedQuote',
   
   // USER MANAGEMENT
-  'POST /user/avatar/:id' : 'UserController.uploadAvatar',
+  'PATCH /user/avatar/:id' : 'UserController.uploadAvatar',
   'GET /user/avatar/:id' : 'UserController.avatar',
 
   'GET /admin/get-role' : 'UserRoleController.getRole',
