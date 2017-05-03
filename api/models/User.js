@@ -29,11 +29,9 @@ module.exports = {
         type: 'STRING',
         defaultsTo: 'user'
     },
-    avatarUrl: {
-        type: 'STRING'
-    },
-    avatarFd: {
-        type: 'STRING'
+    avatar: {
+        collection: 'user_avatar',
+        via: 'userId'
     },
     isDeleted: {
         type: 'BOOLEAN',
@@ -43,6 +41,8 @@ module.exports = {
         var obj = this.toObject();
         //this will delete password keyvalue from returned json
         delete obj.password;
+        // delete obj.avatarFd;
+        // delete obj.avatarUrl;
         return obj;
     }
   },
