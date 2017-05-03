@@ -44,7 +44,8 @@ module.exports.routes = {
   'GET /quote/open' : 'QuoteController.getQuote',
   'GET /quote/protected' : 'QuoteController.getProtectedQuote',
   
-  // USER MANAGEMENT
+  // USER MANAGEMENT. FOR REGISTER 
+  'PATCH /user/profil/:id' : 'UserController.editUser',
   'PATCH /user/avatar/:id' : 'UserController.uploadAvatar',
   'GET /user/avatar/:id' : 'UserController.avatar',
 

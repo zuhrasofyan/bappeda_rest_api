@@ -13,8 +13,7 @@ module.exports = {
   attributes: {
     username: {
         type: 'STRING',
-        required: true,
-        unique: true
+        required: true
     },
     email: {
         type: 'STRING',

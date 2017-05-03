@@ -14,7 +14,7 @@ module.exports = {
         var email = req.param('email');
         var password = req.param('password');
 
-        //validate request
+        // validate request
         if (_.isUndefined(req.param('email'))) {  
             return res.badRequest('An email address is required!'); 
         }
@@ -35,7 +35,7 @@ module.exports = {
             },
             success : function () {
                 User.findOne({email:email}).exec(function (err, result){
-                    //validate from database
+                    // validate from database
                     if (err) {
                         return res.serverError(err);
                     } else if (result) {
@@ -45,7 +45,7 @@ module.exports = {
                         User.create({username:email, email:email, password:password}).exec(function (err, result){
                             if (err) {
                                 return res.serverError(err);
-                                //return res.badRequest('Error create user');
+                                // return res.badRequest('Error create user');
                             }
                             return res.ok();
                         });
@@ -55,12 +55,9 @@ module.exports = {
 
         });
 
-
-
-        //res.send({message: 'TODO: register User'});
     },
 
-    //enable to show all user
+    // enable to show all user
     getAllUser: function (req, res) {
         User.find().exec(function (err, result){
             if (err) {
@@ -71,6 +68,33 @@ module.exports = {
                 return res.json(result);
             }
         });
+    },
+
+    // Edit User Profile information
+    editUser: function (req, res) {
+        var userId = req.param('id'),
+            username = req.param('username');
+        // for time being, user only able to edit the username
+        var thisuser = {
+            username: username
+        };
+        User.findOne(userId).exec(function(err, user){
+            if (err) {
+                return res.negotiate(err);
+            } else if (!user) {
+                return res.notFound('User tidak dapat ditemukan');
+            } else {
+                User.update(userId, thisuser).exec(function(err, result){
+                    if (err) {
+                        return res.serverError(err);
+                    } else {
+                        return res.ok('Data user berhasil diubah');
+                    }
+                })
+            }
+
+
+        })
     },
 
     // Upload user avatar
@@ -160,8 +184,6 @@ module.exports = {
                         return res.badRequest('Format gambar yang dibolehkan adalah jpeg, jpg atau png');
                     }
 
-                    
-
                     // Save the 'fd' and the url to User_avatar table where avatar for a user can be accessed
                     User_avatar.create({
                         userId: userId, 
@@ -191,7 +213,7 @@ module.exports = {
 
         User_avatar.findOne({userId: req.param('id')}).exec(function(err, user){
             if (err) {return res.negotiate(err);}
-            if (!user) {return res.badRequest('No no no no');}
+            if (!user) {return res.notFound('User tidak dapat ditemukan');}
 
             // User has no avatar image uploaded.
             // (should have never have hit this endpoint and used the default image)
