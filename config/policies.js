@@ -61,7 +61,7 @@ module.exports.policies = {
   RenaksiController: {
       addRenaksi: ["hasToken", "isOfficer"],
       editRenaksi: ["hasToken", "isOfficer"],
-      getRadDataTahunan: ["hasToken"],
+      getRadDataTahunan: true,
       getRadKategori: true
   }
 
