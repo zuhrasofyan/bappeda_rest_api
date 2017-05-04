@@ -48,9 +48,11 @@ module.exports.routes = {
   'PATCH /user/profil/:id' : 'UserController.editUser',
   'PATCH /user/avatar/:id' : 'UserController.uploadAvatar',
   'GET /user/avatar/:id' : 'UserController.avatar',
+  'GET /user/profil/:id' : 'UserController.getUser',
 
   'GET /admin/get-role' : 'UserRoleController.getRole',
   'GET /officer/get-all-user' : 'UserController.getAllUser',
+
 
   'GET /desa/all-desa': 'DesaController.getDesa',
 

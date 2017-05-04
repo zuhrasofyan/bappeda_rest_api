@@ -70,6 +70,19 @@ module.exports = {
         });
     },
 
+    getUser: function(req, res) {
+        var userId = req.param('id');
+        User.findOne(userId).exec(function(err, result){
+            if (err) {
+                return res.serverError();
+            } else if (!result) {
+                return res.notFound();
+            } else {
+                return res.json(result);
+            }
+        })
+    },
+
     // Edit User Profile information
     editUser: function (req, res) {
         var userId = req.param('id'),
