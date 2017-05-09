@@ -218,7 +218,7 @@ module.exports = {
         
     },
 
-    avatar: function (req, res) {
+    getAvatar: function (req, res) {
         //var userId = req.param('id');
         req.validate({
             id: 'string'
@@ -226,7 +226,7 @@ module.exports = {
 
         User_avatar.findOne({userId: req.param('id')}).exec(function(err, user){
             if (err) {return res.negotiate(err);}
-            if (!user) {return res.notFound('User tidak dapat ditemukan');}
+            if (!user) {return res.notFound('avatar tidak dapat ditemukan');}
 
             // User has no avatar image uploaded.
             // (should have never have hit this endpoint and used the default image)

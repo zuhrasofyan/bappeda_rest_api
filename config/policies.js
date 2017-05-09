@@ -37,7 +37,7 @@ module.exports.policies = {
       getUser: ["hasToken", "isCorrectUserId"],
       editUser: ["hasToken", "isCorrectUserId"],
       uploadAvatar: ["hasToken", "isCorrectUserId"],
-      avatar: true
+      getAvatar: true
   },
   AuthController: {
       //'*': true
@@ -50,7 +50,8 @@ module.exports.policies = {
       getProtectedQuote: ["hasToken"]
   },
   UserRoleController: {
-      getRole: ["hasToken", "isAdmin"]
+      getRoles: true,
+      changeRole: ["hasToken", "isAdmin"]
   },
   DesaController: {
       getDesa: true

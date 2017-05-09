@@ -47,10 +47,12 @@ module.exports.routes = {
   // USER MANAGEMENT. FOR REGISTER 
   'PATCH /user/profil/:id' : 'UserController.editUser',
   'PATCH /user/avatar/:id' : 'UserController.uploadAvatar',
-  'GET /user/avatar/:id' : 'UserController.avatar',
+  'GET /user/avatar/:id' : 'UserController.getAvatar',
   'GET /user/profil/:id' : 'UserController.getUser',
 
-  'GET /admin/get-role' : 'UserRoleController.getRole',
+  // Admin and officers
+  'GET /admin/get-roles' : 'UserRoleController.getRoles',
+  'PATCH /admin/change-user-role/:id' : 'UserRoleController.changeRole',
   'GET /officer/get-all-user' : 'UserController.getAllUser',
 
 
