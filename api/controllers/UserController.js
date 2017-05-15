@@ -118,102 +118,110 @@ module.exports = {
         //extract extension
         var extension = filename.substr(filename.lastIndexOf('.')+1).toLowerCase().toString();
 
-        // Before upload new avatar, check if user ever upload an avatar
-        User_avatar.findOne({userId: userId}).exec(function(err, userav){
+        // if extension of uploaded image is not jpg or png, response with error
+        if ((extension != "jpg") && (extension != "jpeg") && (extension != "png")) {
+            return res.badRequest('Format gambar yang dibolehkan adalah jpeg, jpg atau png');
+        } else {
 
-            // If existed, delete then Update User_avatar
-            if (userav) {
-                fs.stat(userav.avatarFd, function (err, result){
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        fs.unlink(userav.avatarFd, function (err, res){
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log('file deleted');
-                            }
-                        })
-                    }
-                });
+            // Avatar uploaded
+            req.file('avatar').upload({
+                // max size: ~2 MB
+                maxBytes: 2000000,
+                // set custom upload dir path name
+                dirname: require('path').resolve(sails.config.appPath, 'assets/images/avatar')
+            }, function whenDone(err, uploadedFiles){
+                if (err) {
+                    return res.negotiate(err);
+                }
+
+                // if no file uploaded, response with error
+                if (uploadedFiles.length === 0) {
+                    return res.badRequest('Tidak ada file yang diupload');
+                } else {
+                    // Before upload new avatar, check if user ever upload an avatar
+                    User_avatar.findOne({userId: userId}).exec(function(err, userav){
+
+                        // If existed, delete file from server then Update User_avatar
+                        if (userav) {
+                            fs.stat(userav.avatarFd, function (err, result){
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    fs.unlink(userav.avatarFd, function (err, res){
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log('file deleted');
+                                        }
+                                    })
+                                }
+                            });
+
+                            // Then Save the 'fd' and the url to User_avatar table where avatar for a user can be accessed
+                            User_avatar.update({userId: userId}, {
+                                // Generate a unique URL where the avatar can be downloaded.
+                                avatarUrl: require('util').format('%s/user/avatar/%s', sails.config.appUrl, userId),
+
+                                // Grab the first file and use it's `fd` (file descriptor)
+                                avatarFd: uploadedFiles[0].fd
+                            })
+                            .exec(function(err){
+                                if (err) {
+                                    return res.negotiate(err);
+                                } else {
+                                    return res.ok('Berkas '+ filename + ' telah berhasil diunggah!' + extension);
+                                }
+                            })
+                        // ELSE if the first time user upload avatar, just save it and save URL&Fd to User_avatar model
+                        } else {
+                            User_avatar.create({
+                                userId: userId,
+                                avatarUrl: require('util').format('%s/user/avatar/%s', sails.config.appUrl, userId),
+                                avatarFd: uploadedFiles[0].fd
+                            })
+                            .exec(function(err, result){
+                                if (err) {
+                                    return res.serverError(err);
+                                } else {
+                                    return res.ok('avatar pertama anda berhasil disimpan');
+                                }
+                            })
+                        } 
+
+                    });
+
+                }
+
                 
-                // Avatar uploaded
-                req.file('avatar').upload({
-                    // max size: ~2 MB
-                    maxBytes: 2000000,
-                    // set custom upload dir path name
-                    dirname: require('path').resolve(sails.config.appPath, 'assets/images/avatar')
-                }, function whenDone(err, uploadedFiles){
-                    if (err) {
-                        return res.negotiate(err);
-                    }
+            });
 
-                    // if no file uploaded, response with error
-                    if (uploadedFiles.length === 0) {
-                        return res.badRequest('Tidak ada file yang diupload');
-                    }
+             
 
-                    // if extension of uploaded image is not jpg or png, response with error
-                    if ((extension != "jpg") && (extension != "jpeg") && (extension != "png")) {
-                        return res.badRequest('Format gambar yang dibolehkan adalah jpeg, jpg atau png');
-                    }
+                    
+                    
 
-                    // Then Save the 'fd' and the url to User_avatar table where avatar for a user can be accessed
-                    User_avatar.update({userId: userId}, {
-                        // Generate a unique URL where the avatar can be downloaded.
-                        avatarUrl: require('util').format('%s/user/avatar/%s', sails.config.appUrl, userId),
+                
+            
 
-                        // Grab the first file and use it's `fd` (file descriptor)
-                        avatarFd: uploadedFiles[0].fd
-                    })
-                    .exec(function(err){
-                        if (err) {
-                            return res.negotiate(err);
-                        } else {
-                            return res.ok('Berkas '+ filename + ' telah berhasil diunggah!' + extension);
-                        }
-                    })
-                });
 
-            // Else if the first time user upload avatar, then just save avatar and save the to User_avatar table
-            } else {
-                req.file('avatar').upload({
-                    // max size: ~2 MB
-                    maxBytes: 2000000,
-                    // set custom upload dir path name
-                    dirname: require('path').resolve(sails.config.appPath, 'assets/images/avatar')
-                }, function whenDone(err, uploadedFiles){
-                    if (err) {
-                        return res.negotiate(err);
-                    }
 
-                    // if no file uploaded, response with error
-                    if (uploadedFiles.length === 0) {
-                        return res.badRequest('Tidak ada file yang diupload');
-                    }
 
-                    // if extension of uploaded image is not jpg or png, response with error
-                    if ((extension != "jpg") && (extension != "jpeg") && (extension != "png")) {
-                        return res.badRequest('Format gambar yang dibolehkan adalah jpeg, jpg atau png');
-                    }
 
-                    // Save the 'fd' and the url to User_avatar table where avatar for a user can be accessed
-                    User_avatar.create({
-                        userId: userId, 
-                        avatarUrl: require('util').format('%s/user/avatar/%s', sails.config.appUrl, userId),
-                        avatarFd: uploadedFiles[0].fd
-                    })
-                    .exec(function(err, result){
-                        if (err) {
-                            return res.serverError(err);
-                        } else {
-                            return res.ok('avatar berhasil disimpan');
-                        }
-                    })
-                })
 
-            }
-        });
+
+            
+
+
+        }
+
+
+
+
+
+
+
+
+       
 
         
     },
