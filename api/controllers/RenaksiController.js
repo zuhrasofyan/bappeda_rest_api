@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var path = require('path');
+
 module.exports = {
 	addRenaksi: function (req, res) {
 		var nomor = req.param('nomor'),
@@ -103,6 +105,48 @@ module.exports = {
 				return res.json(katResult);
 			}
 		});
+	},
+
+	uploadBuktiRad: function(req, res) {
+		var renaksiId = req.param('id');
+		var	filename = req.file('image')._files[0].stream.filename;
+		
+		// extract extension
+		var extension = filename.substr(filename.lastIndexOf('.')+1).toLowerCase().toString();
+
+		// if extension of uploaded image is not jpg or png, response with error
+		if ((extension != "jpg") && (extension != "jpeg") && (extension != "png")) {
+			return res.badRequest('Format gambar yang diperbolehkan adalah jpeg, jpg atau png');
+		} else {
+			var folderPath = 'assets/images/bukti';
+			req.file('image').upload({
+				// max file size ~2MB
+				maxBytes: 2000000,
+				// Set custom upload dir path name
+				dirname: path.resolve(sails.config.appPath, folderPath)
+			}, function whenDone(err, uploadedFile){
+				if (err) {
+					return res.negotiate(err);
+				}
+				if (uploadedFile.length === 0) {
+					return res.badRequest('Tidak ada file bukti yang diupload');
+				} else {
+					Bukti_renaksi.create({
+						renaksiId: renaksiId,
+						imageName: path.basename(uploadedFile[0].fd),
+						imageFd: uploadedFile[0].fd
+					})
+					.exec(function(err, result){
+						if (err) {
+							return res.serverError(err);
+						} else {
+							return res.ok('Gambar bukti telah disimpan.');
+						}
+					})
+
+				}
+			})
+		}
 	}
 
 };
