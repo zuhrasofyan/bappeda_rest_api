@@ -8,6 +8,7 @@ var EmailAddresses = require('machinepack-emailaddresses');
 var jwt = require('jsonwebtoken');
 var fs = require('fs');
 var secret = sails.config.secret;
+var path = require('path');
 
 module.exports = {
     register: function (req, res) {
@@ -114,7 +115,7 @@ module.exports = {
     uploadAvatar: function (req, res) {
         var userId = req.param('id');
         var filename = req.file('avatar')._files[0].stream.filename;
-
+              
         //extract extension
         var extension = filename.substr(filename.lastIndexOf('.')+1).toLowerCase().toString();
 
@@ -130,6 +131,9 @@ module.exports = {
                 // set custom upload dir path name
                 dirname: require('path').resolve(sails.config.appPath, 'assets/images/avatar')
             }, function whenDone(err, uploadedFiles){
+                var fileNameAfterUpload = uploadedFiles[0].fd
+                // Use path library to get the UUID name of uploaded file
+                // console.log(path.basename(uploadedFiles[0].fd));
                 if (err) {
                     return res.negotiate(err);
                 }
@@ -187,43 +191,12 @@ module.exports = {
                                 }
                             })
                         } 
-
                     });
-
                 }
-
-                
+              
             });
 
-             
-
-                    
-                    
-
-                
-            
-
-
-
-
-
-
-
-            
-
-
         }
-
-
-
-
-
-
-
-
-       
-
-        
     },
 
     getAvatar: function (req, res) {
