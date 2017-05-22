@@ -16,6 +16,12 @@ module.exports = {
     },
     imageFd: {
       type: 'STRING'
+    },
+     toJSON: function () {
+        var obj = this.toObject();
+        //this will delete imageFd keyvalue from returned json
+        delete obj.imageFd;
+        return obj;
     }
   }
 };
