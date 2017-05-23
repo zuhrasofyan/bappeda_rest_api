@@ -147,6 +147,37 @@ module.exports = {
 				}
 			})
 		}
+	},
+
+	getListImageBukti: function(req, res) {
+		var renaksiId = req.param('id');
+		Bukti_renaksi.find({renaksiId:renaksiId}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
+	},
+
+	getImageBukti: function(req, res){
+		var imageName = req.param('imageName');
+		Bukti_renaksi.findOne({imageName:imageName}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+            	if (!result) {return res.notFound('bukti tidak dapat ditemukan');}
+				var SkipperDisk = require('skipper-disk');
+            	var fileAdapter = SkipperDisk(/* optional opts */);
+
+				// Stream the file down
+				fileAdapter.read(result.imageFd)
+				.on('error', function (err){
+					return res.serverError(err);
+				})
+				.pipe(res);
+			}
+		})
 	}
 
 };

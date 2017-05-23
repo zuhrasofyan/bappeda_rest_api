@@ -66,7 +66,9 @@ module.exports.policies = {
       editRenaksi: ["hasToken", "isOfficer"],
       getRadDataTahunan: true,
       getRadKategori: true,
-      uploadBuktiRad: ["hasToken", "isOfficer"]
+      uploadBuktiRad: ["hasToken", "isOfficer"],
+      getListImageBukti: true,
+      getImageBukti: true
   }
 
   /***************************************************************************
