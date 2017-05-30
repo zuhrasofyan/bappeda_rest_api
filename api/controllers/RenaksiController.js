@@ -120,8 +120,8 @@ module.exports = {
 		} else {
 			var folderPath = 'assets/images/bukti';
 			req.file('image').upload({
-				// max file size ~2MB
-				maxBytes: 2000000,
+				// max file size ~1MB
+				maxBytes: 1000000,
 				// Set custom upload dir path name
 				dirname: path.resolve(sails.config.appPath, folderPath)
 			}, function whenDone(err, uploadedFile){
