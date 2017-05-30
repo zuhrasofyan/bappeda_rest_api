@@ -6,6 +6,8 @@
  */
 
 module.exports = {
+  //use the format defined in database instead
+  migrate: 'safe',
 
   attributes: {
     renaksiId: {
