@@ -15,7 +15,7 @@ module.exports = {
   		type: 'DATE'
   	},
     tahun: {
-      type: 'INTEGER'
+      model: 'rad_year'
     },
   	masalah: {
   		type: 'TEXT'

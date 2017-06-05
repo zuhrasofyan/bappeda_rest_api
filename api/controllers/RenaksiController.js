@@ -86,6 +86,7 @@ module.exports = {
 		});
 	},
 
+	// list of renaksi based on category
 	getRadDataTahunan: function (req, res) {
 		var tahun = req.param('tahun');
 		RenaksiKategori.find().populate('renaksi', {where: {tahun:tahun}}).exec(function(err, result){
@@ -95,6 +96,28 @@ module.exports = {
 				return res.json(result);
 			}
 		});
+	},
+
+	// list of renaksi based on year
+	getRadDataTahun: function (req, res) {
+		var tahun = req.param('tahun');
+		Rad_year.find({tahun:tahun}).populate('renaksi').exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
+	},
+
+	getRadTahun: function(req, res) {
+		Rad_year.find().exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
 	},
 
 	getRadKategori: function(req, res) {
