@@ -93,7 +93,12 @@ module.exports = {
 			if (err) {
 				return res.serverError(err);
 			} else {
-				return res.json(result);
+				// use lodash to filter result and only return categories with non-empty renaksi array
+				var katNotNull = _.filter(result, function(obj){
+					if (obj.renaksi.length ===0) return false;
+					return true;
+				});
+				return res.json(katNotNull);
 			}
 		});
 	},
