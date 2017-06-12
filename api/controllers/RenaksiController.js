@@ -8,6 +8,38 @@
 var path = require('path');
 
 module.exports = {
+	addRadTahun: function (req, res) {
+		var tahun = req.param('tahun'),
+			criteria = {tahun:tahun};
+		Rad_year.findOne(tahun).exec(function(err, resultTahun){
+			if (err) {
+				res.serverError(err);
+			} else {
+				if (!resultTahun) {
+					Rad_year.create({tahun:tahun}).exec(function(error, result){
+						if (error) {
+							res.serverError(err);
+						} else {
+							res.ok('Tahun berhasil ditambah!');
+						}
+					})
+				} else 
+				res.badRequest('Tahun sudah ada!');
+			} 
+		})
+	},
+
+	//get list of tahun array 
+	getRadTahun: function(req, res) {
+		Rad_year.find().exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
+	},
+
 	addRenaksi: function (req, res) {
 		var nomor = req.param('nomor'),
 			tanggal = req.param('tanggal'),
@@ -115,22 +147,25 @@ module.exports = {
 		})
 	},
 
-	getRadTahun: function(req, res) {
-		Rad_year.find().exec(function(err, result){
-			if (err) {
-				return res.serverError(err);
-			} else {
-				return res.json(result);
-			}
-		})
-	},
-
 	getRadKategori: function(req, res) {
 		RenaksiKategori.find().exec(function(err, katResult){
 			if (err) {
 				return res.serverError(err);
 			} else {
 				return res.json(katResult);
+			}
+		});
+	},
+
+	addRadKategori: function(req, res) {
+		var kategoriName = req.param('kategori');
+		RenaksiKategori.create({
+			kategori: kategoriName
+		}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.ok();
 			}
 		});
 	},

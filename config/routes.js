@@ -67,7 +67,9 @@ module.exports.routes = {
   'PATCH /renaksi/edit-data/:id' : 'RenaksiController.editRenaksi',
   'GET /renaksi/get-rad-data/:tahun' : 'RenaksiController.getRadDataTahunan',
   'GET /renaksi/get-rad-tahun/:tahun' : 'RenaksiController.getRadDataTahun',
+  'POST /renaksi/kategori' : 'RenaksiController.addRadKategori',
   'GET /renaksi/kategori' : 'RenaksiController.getRadKategori',
+  'POST /renaksi/tahun': 'RenaksiController.addRadTahun',
   'GET /renaksi/tahun':'RenaksiController.getRadTahun',
 
   'POST /renaksi/bukti-rad/:id' : 'RenaksiController.uploadBuktiRad',

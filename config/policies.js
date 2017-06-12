@@ -62,12 +62,14 @@ module.exports.policies = {
       getLokasiOnSubKategori: true
   },
   RenaksiController: {
+      addRadTahun: ["hasToken", "isOfficer"],
+      getRadTahun: true,
       addRenaksi: ["hasToken", "isOfficer"],
       editRenaksi: ["hasToken", "isOfficer"],
       getRadDataTahunan: true,
       getRadDataTahun: true,
+      addRadKategori: ["hasToken", "isOfficer"],
       getRadKategori: true,
-      getRadTahun: true,
       uploadBuktiRad: ["hasToken", "isOfficer"],
       getListImageBukti: true,
       getImageBukti: true
