@@ -172,7 +172,7 @@ module.exports = {
 
 	addSkpd: function(req, res) {
 		var skpd = req.param('skpd');
-		Skpd.findOne(skpd).exec(function(err, resultSkpd){
+		Skpd.findOne({skpd:skpd}).exec(function(err, resultSkpd){
 			if (err) {
 				res.serverError(err);
 			} else {

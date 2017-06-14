@@ -14,7 +14,8 @@ module.exports = {
   		unique: true
   	},
   	kategori: {
-  		type: 'STRING'
+  		type: 'STRING',
+      required: true
   	},
     renaksi: {
       collection: 'renaksi',

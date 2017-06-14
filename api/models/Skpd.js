@@ -10,7 +10,8 @@ module.exports = {
   attributes: {
     skpd: {
       type: 'STRING',
-      unique: true
+      unique: true,
+      required: true
     }
   },
   autoCreatedAt: false,

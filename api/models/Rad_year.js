@@ -11,7 +11,8 @@ module.exports = {
     tahun: {
       type: 'INTEGER',
       primaryKey: true,
-  		unique: true
+  		unique: true,
+      required: true
     },
     renaksi: {
       collection: 'renaksi',
