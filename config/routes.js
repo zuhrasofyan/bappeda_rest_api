@@ -71,6 +71,8 @@ module.exports.routes = {
   'GET /renaksi/kategori' : 'RenaksiController.getRadKategori',
   'POST /renaksi/tahun': 'RenaksiController.addRadTahun',
   'GET /renaksi/tahun':'RenaksiController.getRadTahun',
+  'POST /renaksi/skpd': 'RenaksiController.addSkpd',
+  'GET /renaksi/skpd': 'RenaksiController.getSkpdList',
 
   'POST /renaksi/bukti-rad/:id' : 'RenaksiController.uploadBuktiRad',
   'GET /renaksi/list-bukti-rad/:id' : 'RenaksiController.getListImageBukti',

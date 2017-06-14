@@ -170,6 +170,36 @@ module.exports = {
 		});
 	},
 
+	addSkpd: function(req, res) {
+		var skpd = req.param('skpd');
+		Skpd.findOne(skpd).exec(function(err, resultSkpd){
+			if (err) {
+				res.serverError(err);
+			} else {
+				if (!resultSkpd) {
+					Skpd.create({skpd:skpd}).exec(function(error, result){
+						if (error) {
+							res.serverError(err);
+						} else {
+							res.ok('SKPD baru berhasil ditambah!');
+						}
+					})
+				} else 
+				res.badRequest('SKPD sudah ada!');
+			} 
+		})
+	},
+
+	getSkpdList: function (req, res) {
+		Skpd.find().exec(function(err, result){
+			if (err) {
+				res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
+	},
+
 	uploadBuktiRad: function(req, res) {
 		var renaksiId = req.param('id');
 		var	filename = req.file('image')._files[0].stream.filename;
