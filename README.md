@@ -6,6 +6,7 @@ A fork from sails-passport with the intention of providing required data and RES
 * Clone this repo and `cd` to your destined folder
 * Make sure your MySQL server is running
 * Rename `/config/connections_example.js` to `/config/connections.js` and change the value of `mysqlServer` in `/config/connections` to reflect your own MySQL setup conf (make sure to use new dedicated database since it will alter the database, unless you change the config in connections.js )
+* Rename `/config/email_example.js` to `/config/email.js` and uncomment the lines while filling it with correct credential. This is needed to activate actavating registered user via email
 * run `npm install`
 * run `sails lift`
 
