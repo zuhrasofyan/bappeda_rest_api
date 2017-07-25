@@ -36,6 +36,10 @@ module.exports = {
         type: 'BOOLEAN',
         defaultsTo: false
     },
+    isActivated: {
+        type: 'BOOLEAN',
+        defaultsTo: false
+    },
     toJSON: function () {
         var obj = this.toObject();
         //this will delete password keyvalue from returned json
