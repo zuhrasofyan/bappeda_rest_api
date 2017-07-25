@@ -1,7 +1,7 @@
 /**
  * UserController
  *
- * @description :: Server-side logic for managing users
+ * @description :: Server-side logic for managing users. For enabling validating of registered user, please make a sails-hook-email config with true credential!
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var EmailAddresses = require('machinepack-emailaddresses');
@@ -17,13 +17,13 @@ module.exports = {
 
         // validate request
         if (_.isUndefined(req.param('email'))) {  
-            return res.badRequest('An email address is required!'); 
+            return res.badRequest('Dibutuhkan sebuah alamat email'); 
         }
         if (_.isUndefined(req.param('password'))) {
-            return res.badRequest('A password is required');
+            return res.badRequest('Membutuhkan password');
         }
         if (req.param('password').length < 6) {
-            return res.badRequest('A password must be at least 6 character');
+            return res.badRequest('Password harus minimal terdiri dari 6 karakter');
         }
         EmailAddresses.validate({
             string: email
@@ -32,7 +32,7 @@ module.exports = {
                 return res.serverError(err);
             },
             invalid: function () {
-                return res.badRequest('Does not looks like an email address for me :)');
+                return res.badRequest('Kelihatannya, yang anda masukkan bukan berupa format email :)');
             },
             success : function () {
                 User.findOne({email:email}).exec(function (err, result){
@@ -40,22 +40,60 @@ module.exports = {
                     if (err) {
                         return res.serverError(err);
                     } else if (result) {
-                        return res.badRequest('Email already used!');
+                        return res.badRequest('Email sudah terdaftar di database kami!');
                     } else {
-
-                        User.create({username:email, email:email, password:password}).exec(function (err, result){
+                        // rand=Math.floor((Math.random() * 100000) + 54);
+                        rand = Math.random().toString(36).substr(2, 5);
+                        TempUser.create({email:email, verificationNumber:rand}).exec(function(err, result){
                             if (err) {
                                 return res.serverError(err);
-                                // return res.badRequest('Error create user');
+                            } else {
+                                User.create({username:email, email:email, password:password}).exec(function (err, result){
+                                    if (err) {
+                                        return res.serverError(err);
+                                    } else {
+                                        Mailer.sendActivationMail({username: email, email:email, verificationNumber: rand, url: sails.config.appUrl});
+                                        return res.ok();
+                                    }
+                                })   
                             }
-                            return res.ok();
-                        });
+                        })
+                        
                     }
                 });
             }
 
         });
 
+    },
+
+    validateUser: function(req, res) {
+        var verificationNumber = req.param('verificationNumber');
+        TempUser.findOne({verificationNumber:verificationNumber}).exec(function(err, result){
+            if (err) {
+                return res.serverError(err)
+            } else {
+                console.log(result);
+                var email = result.email;
+                User.findOne({email:email}).exec(function(error, userData){
+                    if (err) {
+                        return res.serverError(error);
+                    } else {
+                        if (userData.isActivated === true) {
+                            return res.ok('Akun sudah teraktivasi!');
+                        } else {
+                            User.update({id: userData.id},{isActivated: true}).exec(function(errorUpdate, updateResult){
+                                if (errorUpdate) {
+                                    return res.serverError('Tidak berhasil diaktivasi. coba ulangi lagi');
+                                } else {
+                                    return res.ok('Akun berhasil diaktivasi!');
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        })
     },
 
     // enable to show all user
@@ -155,7 +193,7 @@ module.exports = {
                                         if (err) {
                                             console.log(err);
                                         } else {
-                                            console.log('file deleted');
+                                            console.log('file dihapus!');
                                         }
                                     })
                                 }

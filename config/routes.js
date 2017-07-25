@@ -41,8 +41,10 @@ module.exports.routes = {
   'GET /auth/validate_token' : 'AuthController.validate_token',
   'GET /auth/logout': 'AuthController.logout',
   'POST /register' : 'UserController.register',
+  'GET /activation/:verificationNumber': 'UserController.validateUser',
   'GET /quote/open' : 'QuoteController.getQuote',
   'GET /quote/protected' : 'QuoteController.getProtectedQuote',
+  
   
   // USER MANAGEMENT. FOR REGISTER 
   'PATCH /user/profil/:id' : 'UserController.editUser',

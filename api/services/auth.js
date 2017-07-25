@@ -8,28 +8,44 @@ module.exports = {
             if (!user) {
                 res.status(400).send({
                     success: false,
-                    message: 'invalidLogin'
+                    message: 'Password atau email yang anda masukkan salah. coba ulangi'
                 });
                 return;
             } else {
                 if (err) {
                     res.status(400).send({
                         success: false,
-                        message: 'unknownError',
+                        message: 'Error pada server',
                         error: err
                     });
+                    return;
                 } else {
-                    //token expired in 1 day
-                    var userdata = user[0];
-                    delete userdata.password;
-                    var token = jwt.sign(userdata, sails.config.secret, {expiresIn: 60 * 60 * 24});
-                    // Set persistent cookie
-                    req.session.cookie.token = token;
-                    res.send({
-                        success: true,
-                        user: user[0],
-                        token: token
-                    });
+
+                    if (user[0].isActivated === false) {
+                        res.status(401).send({
+                            success: false,
+                            message: 'Akun anda belum diaktivasi. Silahkan cek email atau hubungi admin.'
+                        });
+                        return;
+                    } else if (user[0].isActivated === true){
+                        //token expired in 1 day
+                        var userdata = user[0];
+                        delete userdata.password;
+                        var token = jwt.sign(userdata, sails.config.secret, {expiresIn: 60 * 60 * 24});
+                        // Set persistent cookie
+                        req.session.cookie.token = token;
+                        res.send({
+                            success: true,
+                            user: user[0],
+                            token: token
+                        });
+                    } else {
+                        res.status(400).send({
+                            success: false,
+                            message: 'Terjadi kesalahan pada server.'
+                        })
+                    }
+                    
                 }
             }
         })(req, res);

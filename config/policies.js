@@ -33,6 +33,7 @@ module.exports.policies = {
   '*': false,
   UserController: {
       register: true,
+      validateUser: true,
       getAllUser: ["hasToken", "isOfficer"],
       getUser: ["hasToken", "isCorrectUserId"],
       editUser: ["hasToken", "isCorrectUserId"],
