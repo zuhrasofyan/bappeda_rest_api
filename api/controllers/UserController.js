@@ -81,7 +81,7 @@ module.exports = {
                     } else {
                         if (userData.isActivated === true) {
                             return res.ok('Akun sudah teraktivasi!');
-                        } else {
+                        } else if (userData.isActivated === false) {
                             User.update({id: userData.id},{isActivated: true}).exec(function(errorUpdate, updateResult){
                                 if (errorUpdate) {
                                     return res.serverError('Tidak berhasil diaktivasi. coba ulangi lagi');
@@ -89,6 +89,8 @@ module.exports = {
                                     return res.ok('Akun berhasil diaktivasi!');
                                 }
                             })
+                        } else {
+                            return res.serverError('Error pada server');
                         }
                     }
                 })
