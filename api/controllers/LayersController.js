@@ -8,11 +8,11 @@
 module.exports = {
   
 	addLayer: function (req, res) {
-		var layer = req.param('layer');
-		var	userId = req.param('id');
+		var name = req.param('name');
+		var	userId = req.param('userId');
 
 		Layers.create({
-			name: layer,
+			name: name,
 			userId: userId
 		}).exec(function(err, result){
 			if (err) {
@@ -22,7 +22,7 @@ module.exports = {
 			}
 		});
 	},
-	
+
 	layerList: function(req, res) {
 		var userId = req.param('id');
 		Layers.find({userId: userId}).exec(function(err, result){
