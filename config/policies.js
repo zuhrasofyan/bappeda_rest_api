@@ -85,7 +85,9 @@ module.exports.policies = {
   },
   // marker
   MarkerLayersController: {
-    addMarker: ["hasToken", "isCorrectUserId"]
+    saveMarker: ["hasToken", "isCorrectUserId"],
+    deleteMarker: ["hasToken", "isCorrectUserId"],
+    getUserMarkers: true
   }
 
   /***************************************************************************

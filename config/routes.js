@@ -85,9 +85,9 @@ module.exports.routes = {
   'POST /sigap/tambah-layer/:id' : 'LayersController.addLayer',
   'GET /sigap/layer-list/:id' : 'LayersController.layerList',
   // marker
-  'POST /sigap/tambah-marker/:id' : 'MarkerLayersController.addMarker',
-
-
+  'POST /sigap/save-marker/:id' : 'MarkerLayersController.saveMarker',
+  'POST /sigap/delete-marker/:id' : 'MarkerLayersController.deleteMarker',
+  'GET /sigap/marker-list/:id' : 'MarkerLayersController.getUserMarkers',
 
   /***************************************************************************
   *                                                                          *
