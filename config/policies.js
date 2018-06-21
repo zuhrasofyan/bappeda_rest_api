@@ -76,6 +76,16 @@ module.exports.policies = {
       uploadBuktiRad: ["hasToken", "isOfficer"],
       getListImageBukti: true,
       getImageBukti: true
+  },
+  // THIS PART ESPECIALLY FOR SIGAP APPLICATION
+  // layers
+  LayersController: {
+    addLayer: ["hasToken", "isCorrectUserId"],
+    layerList: true
+  },
+  // marker
+  MarkerLayersController: {
+    addMarker: ["hasToken", "isCorrectUserId"]
   }
 
   /***************************************************************************

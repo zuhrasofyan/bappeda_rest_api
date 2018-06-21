@@ -78,7 +78,15 @@ module.exports.routes = {
 
   'POST /renaksi/bukti-rad/:id' : 'RenaksiController.uploadBuktiRad',
   'GET /renaksi/list-bukti-rad/:id' : 'RenaksiController.getListImageBukti',
-  'GET /renaksi/bukti-rad/:imageName': 'RenaksiController.getImageBukti'
+  'GET /renaksi/bukti-rad/:imageName': 'RenaksiController.getImageBukti',
+
+  // SIGAP
+  // layer
+  'POST /sigap/tambah-layer/:id' : 'LayersController.addLayer',
+  'GET /sigap/layer-list/:id' : 'LayersController.layerList',
+  // marker
+  'POST /sigap/tambah-marker/:id' : 'MarkerLayersController.addMarker',
+
 
 
   /***************************************************************************
