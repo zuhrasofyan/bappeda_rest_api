@@ -1,8 +1,8 @@
 {
-  "name": "sails-passport",
+  "name": "bappeda-rest-api",
   "private": true,
   "version": "0.0.1",
-  "description": "REST API boilerplate with sailsjs and authentification-ready application",
+  "description": "REST API  with sailsjs fo Bappeda kota Banda Aceh web Applications",
   "keywords": [],
   "dependencies": {
     "bcrypt": "^1.0.1",
