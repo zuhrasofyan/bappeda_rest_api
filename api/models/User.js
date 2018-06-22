@@ -40,6 +40,13 @@ module.exports = {
         type: 'BOOLEAN',
         defaultsTo: false
     },
+
+    // Add a reference to layers
+    layers: {
+      collection: 'layers',
+      via: 'user'
+    },
+
     toJSON: function () {
         var obj = this.toObject();
         //this will delete password keyvalue from returned json

@@ -28,6 +28,10 @@ module.exports = {
         defaultsTo: {
             showOnSelector: true
         }
+    },
+    // add reference to user
+    user: {
+        model: 'user'
     }
 
   },
