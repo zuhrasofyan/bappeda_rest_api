@@ -32,6 +32,23 @@ module.exports = {
 				return res.json(result);
 			}
 		})
+	},
+
+	getUserLayersMarkers: function(req, res) {
+		var userId = req.param('id');
+		User.find({id: userId}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				Layers.find({userId: userId}).populate('markers').exec(function(error, resultMarkers){
+					if (error) {
+						return res.serverError(error);
+					} else {
+						return res.json(resultMarkers);
+					}
+				})
+			}
+		})
 	}
 };
 
