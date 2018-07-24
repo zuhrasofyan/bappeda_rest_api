@@ -28,6 +28,12 @@ module.exports = {
         defaultsTo: {
             showOnSelector: true
         }
+    },
+
+    // Add a reference to markers in MarkerLayers model
+    markers: {
+      collection: 'markerlayers',
+      via: 'layer'
     }
 
   },

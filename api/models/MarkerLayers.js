@@ -8,15 +8,15 @@
 module.exports = {
 
   //use the format defined in database instead
-  migrate: 'safe',
+  // migrate: 'safe',
 
   attributes: {
 
-    // make reference to Layer (layer id), but since laeflet use string as layer name, then we store the id as string.
+    // make reference to Layer (layer id).
     layer: {
-        type: 'STRING'
+        model: 'layers'
     },
-
+    // the rest
     lat: {
         type: 'FLOAT'
     },
