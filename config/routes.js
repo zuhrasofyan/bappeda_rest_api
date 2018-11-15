@@ -60,6 +60,7 @@ module.exports.routes = {
 
   'GET /desa/all-desa': 'DesaController.getDesa',
   'GET /kecamatan/all-kecamatan': 'KecamatanController.getKecamatan',
+  'GET /kecamatan/kecamatan-desa': 'KecamatanController.getKecamatanDesa',
 
   'GET /lokasi': 'LokasiController.getLokasi',
   'GET /lokasi/:kategori': 'LokasiController.getLokasiOnKategori',

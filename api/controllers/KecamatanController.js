@@ -14,7 +14,17 @@ module.exports = {
             return res.json(result);
         }
     });
-}
+  },
+
+  getKecamatanDesa: function (req, res) {
+    Kecamatan.find().populate('desa').exec(function(err, result){
+        if (err) {
+            return res.notFound();
+        } else {
+            return res.json(result);
+        }
+    });
+  }
 
 };
 

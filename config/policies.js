@@ -58,7 +58,8 @@ module.exports.policies = {
       getDesa: true
   },
   KecamatanController: {
-    getKecamatan: true
+    getKecamatan: true,
+    getKecamatanDesa: true
   },
   LokasiController: {
       getLokasi: true,
