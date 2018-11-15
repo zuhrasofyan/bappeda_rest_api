@@ -29,6 +29,12 @@ module.exports = {
     },
     Bujur: {
       type: 'FLOAT'
+    },
+
+    // Add reference ke Desa
+    desa: {
+      collection: 'dasar_desa',
+      via: 'kecamatan'
     }
   },
 

@@ -47,6 +47,12 @@ module.exports = {
     },
     BUJUR: {
       type: 'FLOAT'
+    },
+
+    // Add reference ke kecamatan
+    kecamatan: {
+      model: 'kecamatan',
+      columnName: 'KECAMATAN_ID'
     }
   }
 };
