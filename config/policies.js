@@ -93,7 +93,14 @@ module.exports.policies = {
     saveMarker: ["hasToken", "isCorrectUserId"],
     deleteMarker: ["hasToken", "isCorrectUserId"],
     getUserMarkers: true
+  },
+
+  // THIS PART ESPECIALLY FOR SURVEY APPLICATION
+  SurveyLayakHuniController: {
+      addLayakHuni: true
   }
+
+
 
   /***************************************************************************
   *                                                                          *

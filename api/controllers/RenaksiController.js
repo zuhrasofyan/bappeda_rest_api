@@ -71,7 +71,7 @@ module.exports = {
 			persentasi_capaian: persentasiCapaian,
 			keterangan: keterangan,
 			pembuat: pembuat
-		}). exec(function(err, result){
+		}).exec(function(err, result){
 			if (err) {
 				return res.serverError(err);
 			} else {

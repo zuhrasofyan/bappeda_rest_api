@@ -9,7 +9,7 @@ module.exports = {
   
   addLayakHuni: function (req, res) {
 
-    SurveyLayakHuni.create({
+    Survey_layak_huni.create({
       nama: req.param('nama'),
       jenis_kelamin: req.param('jenisKelamin'),
       usia: req.param('usia'),

@@ -92,6 +92,9 @@ module.exports.routes = {
   'POST /sigap/delete-marker/:id' : 'MarkerLayersController.deleteMarker',
   'GET /sigap/marker-list/:id' : 'MarkerLayersController.getUserMarkers',
 
+  // FORM SURVEY
+  'POST /survey/tambah-data-layak-huni' : 'SurveyLayakHuniController.addLayakHuni',
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

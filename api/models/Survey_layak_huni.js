@@ -32,11 +32,11 @@ module.exports = {
       type: 'INTEGER',
       required: true
     },
-    kec_lat: {
+    kecamatan_lat: {
       type: 'FLOAT',
       required: true
     },
-    kec_lng: {
+    kecamatan_lng: {
       type: 'FLOAT',
       required: true
     },
