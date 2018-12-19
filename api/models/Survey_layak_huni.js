@@ -199,6 +199,16 @@ module.exports = {
       type: 'INTEGER',
       defaultsTo: null
     },
+    // Fasilitas Peribadatan/ Pelayanan Keagamaan
+    kualitas_layanan_agama: {
+      type: 'INTEGER',
+      defaultsTo: null
+    },
+    kebersihan_fasilitas_agama: {
+      type: 'INTEGER',
+      defaultsTo: null
+    },
+
     // Fasilitas Taman Kota
     kemudahan_taman_kota: {
       type: 'INTEGER',
