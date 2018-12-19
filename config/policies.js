@@ -98,6 +98,9 @@ module.exports.policies = {
   // THIS PART ESPECIALLY FOR SURVEY APPLICATION
   SurveyLayakHuniController: {
       addLayakHuni: true
+  },
+  SurveyPertanyaanLayakController: {
+      getPertanyaanKategori: true
   }
 
 

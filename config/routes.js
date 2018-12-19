@@ -94,6 +94,7 @@ module.exports.routes = {
 
   // FORM SURVEY
   'POST /survey/tambah-data-layak-huni' : 'SurveyLayakHuniController.addLayakHuni',
+  'GET /survey/pertanyaan-kategori' : 'SurveyPertanyaanLayakController.getPertanyaanKategori',
 
   /***************************************************************************
   *                                                                          *
