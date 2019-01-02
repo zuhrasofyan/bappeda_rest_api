@@ -89,6 +89,16 @@ module.exports = {
 				return res.ok();
 			}
 		});
+  },
+
+  getAllLayakHuni: function (req, res) {
+    Survey_layak_huni.find().exec(function(err, result){
+      if (err) {
+          return res.notFound();
+      } else {
+          return res.json(result);
+      }
+    });
   }
 };
 

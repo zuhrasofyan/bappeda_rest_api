@@ -14,7 +14,7 @@ module.exports = {
       } else {
           return res.json(result);
       }
-  });
+    });
   }
 
 };
