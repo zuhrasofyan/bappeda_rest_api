@@ -102,6 +102,9 @@ module.exports.policies = {
   },
   SurveyPertanyaanLayakController: {
       getPertanyaanKategori: true
+  },
+  SurveyJawabanController: {
+    addJawaban: true
   }
 
 

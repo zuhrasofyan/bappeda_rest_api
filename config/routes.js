@@ -93,9 +93,10 @@ module.exports.routes = {
   'GET /sigap/marker-list/:id' : 'MarkerLayersController.getUserMarkers',
 
   // FORM SURVEY
-  'POST /survey/tambah-data-layak-huni' : 'SurveyLayakHuniController.addLayakHuni',
+  // 'POST /survey/tambah-data-layak-huni' : 'SurveyLayakHuniController.addLayakHuni',
   'GET /survey/pertanyaan-kategori' : 'SurveyPertanyaanLayakController.getPertanyaanKategori',
   'GET /survey/jawaban-all' : 'SurveyLayakHuniController.getAllLayakHuni',
+  'POST /survey/tambah-data-layak-huni' : 'SurveyJawabanController.addJawaban',
 
   /***************************************************************************
   *                                                                          *
