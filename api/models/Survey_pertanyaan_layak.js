@@ -7,24 +7,29 @@
 
 module.exports = {
   //use the format defined in database instead
-  migrate: 'safe',
+  // migrate: 'safe',
 
   autoCreatedAt: false,
   autoUpdatedAt: false,
 
   attributes: {
 
-    kategori: {
-      type: 'INTEGER',
-    },
-    pertanyaan: {
+    // kategori: {
+    //   type: 'INTEGER',
+    // },
+    nama: {
       type: 'STRING'
     },
 
-    // add reference to Kategori
-    kategoris: {
+    // get reference from Kategori
+    kategori: {
       model: 'survey_kategori',
-      columnName: 'kategori'
+    },
+
+    // add reference to jawaban
+    pertanyaans: {
+      collection: 'survey_jawaban_layak_huni',
+      via: 'pertanyaan'
     }
   },
 
