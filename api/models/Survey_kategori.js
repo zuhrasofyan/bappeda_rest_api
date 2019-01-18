@@ -7,7 +7,7 @@
 
 module.exports = {
   //use the format defined in database instead
-  migrate: 'safe',
+  // migrate: 'safe',
 
   autoCreatedAt: false,
   autoUpdatedAt: false,
@@ -20,9 +20,15 @@ module.exports = {
     },
 
     // add reference to pertanyaan
-    pertanyaan: {
+    pertanyaans: {
       collection: 'survey_pertanyaan_layak',
-      via: 'kategoris'
+      via: 'kategori'
+    },
+
+    // add reference to jawaban
+    jawabans: {
+      collection: 'survey_jawaban_layak_huni',
+      via: 'kategori'
     }
 
   },
