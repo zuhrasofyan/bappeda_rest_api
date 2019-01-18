@@ -8,7 +8,7 @@
 module.exports = {
   
   getPertanyaanKategori: function (req, res) {
-    Survey_kategori.find().populate('pertanyaan').exec(function(err, result){
+    Survey_kategori.find().populate('pertanyaans').exec(function(err, result){
       if (err) {
           return res.notFound();
       } else {
