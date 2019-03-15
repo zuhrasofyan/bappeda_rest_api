@@ -59,6 +59,21 @@ module.exports = {
             cb(null, user);
         });
     });
+  },
+  beforeUpdate: function (data, cb) {
+    // console.log(data);
+    // delete user.password_confirmation;
+    if (data.password) {
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(data.password, salt, function () {
+            }, function (err, hash) {
+                data.password = hash;
+                cb(null, data);
+            });
+        });
+    } else {
+        cb();
+    }
   }
 };
 

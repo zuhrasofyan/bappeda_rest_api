@@ -51,6 +51,7 @@ module.exports.routes = {
   'PATCH /user/avatar/:id' : 'UserController.uploadAvatar',
   'GET /user/avatar/:id' : 'UserController.getAvatar',
   'GET /user/profil/:id' : 'UserController.getUser',
+  'PATCH /user/change-password/:id' : 'UserController.changeUserPassword',
 
   // Admin and officers
   'GET /admin/get-roles' : 'UserRoleController.getRoles',

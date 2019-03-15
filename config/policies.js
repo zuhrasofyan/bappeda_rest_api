@@ -38,7 +38,8 @@ module.exports.policies = {
       getUser: ["hasToken", "isCorrectUserId"],
       editUser: ["hasToken", "isCorrectUserId"],
       uploadAvatar: ["hasToken", "isCorrectUserId"],
-      getAvatar: true
+      getAvatar: true,
+      changeUserPassword: ["hasToken", "isCorrectUserId"]
   },
   AuthController: {
       //'*': true

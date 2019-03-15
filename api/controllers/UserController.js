@@ -151,6 +151,39 @@ module.exports = {
         })
     },
 
+    // Change User Password
+    changeUserPassword: function (req, res) {
+        var userId = req.param('id');
+        var newPassword = req.param('newPassword');
+
+        // Validate request
+        if (_.isUndefined(newPassword)) {
+            return res.badRequest('Membutuhkan password');
+        }
+        if (newPassword.length < 6) {
+            return res.badRequest('Password harus minimal terdiri dari 6 karakter');
+        }
+
+        User.findOne(userId).exec(function(err, user){
+            if (err) {
+                return res.negotiate(err);
+            } else if (!user) {
+                return res.notFound('User tidak dapat ditemukan');
+            } else {
+                User.update(userId, {password: newPassword}).exec(function(err, result){
+                    if (err) {
+                        return res.serverError(err);
+                    } else {
+                        console.log('ok');
+                        return res.ok('Password berhasil diubah');
+                    }
+                })
+            }
+
+
+        })
+    },
+
     // Upload user avatar
     uploadAvatar: function (req, res) {
         var userId = req.param('id');
