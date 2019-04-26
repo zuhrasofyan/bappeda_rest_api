@@ -152,6 +152,7 @@ module.exports = {
     },
 
     // Change User Password
+    // TODO: USe bcrypt function to check old password. so user also has to input their old password before change it to the new pass
     changeUserPassword: function (req, res) {
         var userId = req.param('id');
         var newPassword = req.param('newPassword');
