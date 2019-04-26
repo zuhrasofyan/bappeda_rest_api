@@ -29,6 +29,10 @@ module.exports = {
             showOnSelector: true
         }
     },
+    status: {
+      type: 'STRING',
+      defaultsTo: 'draft'
+    },
 
     // Add a reference to markers in MarkerLayers model
     markers: {
