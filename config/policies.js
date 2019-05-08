@@ -86,7 +86,8 @@ module.exports.policies = {
   // layers
   LayersController: {
     addLayer: ["hasToken", "isCorrectUserId"],
-    layerList: true,
+    editLayer: ["hasToken", "isCorrectUserId"],
+    layerList: ["hasToken", "isCorrectUserId"],
     getUserLayersMarkers: ["hasToken", "isAdmin"],
   },
   // marker

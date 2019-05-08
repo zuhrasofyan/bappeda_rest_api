@@ -23,6 +23,29 @@ module.exports = {
 		});
 	},
 
+	editLayer: function (req, res) {
+		var layerId = req.param('layerId');
+		var newLayerName = req.param('newLayerName');
+		Layers.findOne({id: layerId}).exec(function(err, layer) {
+				if (err) {
+						return res.negotiate(err);
+				} else if (!layer) {
+						return res.notFound('Layer tidak dapat ditemukan');
+				} else {
+						// TODO: Do patching the data
+						Layers.update(layerId, {name: newLayerName}).exec(function(err, result){
+							if (err) {
+									return res.serverError(err);
+							} else {
+									return res.ok('Nama layer berhasil diubah');
+							}
+						})
+						// return res.json(layer);
+
+				}
+		})
+	},
+
 	layerList: function(req, res) {
 		var userId = req.param('id');
 		Layers.find({userId: userId}).exec(function(err, result){
