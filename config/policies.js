@@ -90,6 +90,10 @@ module.exports.policies = {
     layerList: ["hasToken", "isCorrectUserId"],
     getUserLayersMarkers: ["hasToken", "isAdmin"],
   },
+  LayerStatusController: {
+    getStatus: true,
+    changeStatus: ["hasToken", "isCorrectUserId"]
+},
   // marker
   MarkerLayersController: {
     saveMarker: ["hasToken", "isCorrectUserId"],

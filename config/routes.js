@@ -89,6 +89,8 @@ module.exports.routes = {
   'PATCH /sigap/edit-layer/:id/:layerId' : 'LayersController.editLayer', 
   'GET /sigap/layer-list/:id' : 'LayersController.layerList',
   'GET /sigap/user-marker-per-layer/:id' : 'LayersController.getUserLayersMarkers',
+  'GET /sigap/layer-status' : 'LayerStatusController.getLayerStatus',
+  'PATCH /sigap/change-layer-status' : 'LayerStatusController.changeLayerStatus',
   // marker
   'POST /sigap/save-marker/:id' : 'MarkerLayersController.saveMarker',
   'POST /sigap/delete-marker/:id' : 'MarkerLayersController.deleteMarker',
