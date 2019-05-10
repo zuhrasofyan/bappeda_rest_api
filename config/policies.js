@@ -87,8 +87,12 @@ module.exports.policies = {
   LayersController: {
     addLayer: ["hasToken", "isCorrectUserId"],
     editLayer: ["hasToken", "isCorrectUserId"],
+    allLayerList: ["hasToken", "isCorrectUserId"],
     layerList: ["hasToken", "isCorrectUserId"],
+    deletedLayerList: ["hasToken", "isCorrectUserId"],
     getUserLayersMarkers: ["hasToken", "isAdmin"],
+    deactivateLayer: ["hasToken", "isCorrectUserId"],
+    activateLayer: ["hasToken", "isCorrectUserId"],
   },
   LayerStatusController: {
     getStatus: true,

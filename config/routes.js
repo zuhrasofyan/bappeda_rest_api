@@ -87,10 +87,13 @@ module.exports.routes = {
   // layer
   'POST /sigap/tambah-layer/:id' : 'LayersController.addLayer', 
   'PATCH /sigap/edit-layer/:id/:layerId' : 'LayersController.editLayer', 
+  'GET /sigap/all-layer-list/:id' : 'LayersController.allLayerList',
   'GET /sigap/layer-list/:id' : 'LayersController.layerList',
+  'GET /sigap/deleted-layer-list/:id' : 'LayersController.deletedLayerList',
   'GET /sigap/user-marker-per-layer/:id' : 'LayersController.getUserLayersMarkers',
   'GET /sigap/layer-status' : 'LayerStatusController.getLayerStatus',
-  'PATCH /sigap/change-layer-status' : 'LayerStatusController.changeLayerStatus',
+  'PATCH /sigap/layer-deactivate/:id/:layerId' : 'LayersController.deactivateLayer',
+  'PATCH /sigap/layer-activate/:id/:layerId' : 'LayersController.activateLayer',
   // marker
   'POST /sigap/save-marker/:id' : 'MarkerLayersController.saveMarker',
   'POST /sigap/delete-marker/:id' : 'MarkerLayersController.deleteMarker',

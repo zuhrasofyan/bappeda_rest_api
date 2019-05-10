@@ -32,7 +32,6 @@ module.exports = {
 				} else if (!layer) {
 						return res.notFound('Layer tidak dapat ditemukan');
 				} else {
-						// TODO: Do patching the data
 						Layers.update(layerId, {name: newLayerName}).exec(function(err, result){
 							if (err) {
 									return res.serverError(err);
@@ -40,15 +39,86 @@ module.exports = {
 									return res.ok('Nama layer berhasil diubah');
 							}
 						})
-						// return res.json(layer);
-
 				}
 		})
 	},
 
+	// Soft delete layer (make it inactive)
+	deactivateLayer: function (req, res) {
+		var layerId = req.param('layerId');
+		Layers.findOne({id: layerId}).exec(function(err, layer) {
+				if (err) {
+						return res.negotiate(err);
+				} else if (!layer) {
+						return res.notFound('Layer tidak dapat ditemukan');
+				} else {
+						Layers.update(layerId, {isDeleted: true}).exec(function(err, result){
+							if (err) {
+									return res.serverError(err);
+							} else {
+									return res.ok('layer berhasil di nonaktifkan');
+							}
+						})
+				}
+		})
+	},
+
+	// Undelete layer (make it active)
+	// Soft delete layer (make it inactive)
+	activateLayer: function (req, res) {
+		var layerId = req.param('layerId');
+		Layers.findOne({id: layerId}).exec(function(err, layer) {
+				if (err) {
+						return res.negotiate(err);
+				} else if (!layer) {
+						return res.notFound('Layer tidak dapat ditemukan');
+				} else {
+						Layers.update(layerId, {isDeleted: false}).exec(function(err, result){
+							if (err) {
+									return res.serverError(err);
+							} else {
+									return res.ok('layer berhasil diaktifkan kembali');
+							}
+						})
+				}
+		})
+	},
+
+	// all layers
+	allLayerList: function(req, res) {
+		var userId = req.param('id');
+		Layers.find({
+			userId: userId,
+		}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
+	},
+
+	// only for active layers
 	layerList: function(req, res) {
 		var userId = req.param('id');
-		Layers.find({userId: userId}).exec(function(err, result){
+		Layers.find({
+			userId: userId,
+			isDeleted: false
+		}).exec(function(err, result){
+			if (err) {
+				return res.serverError(err);
+			} else {
+				return res.json(result);
+			}
+		})
+	},
+	//  for inactive (soft deleted) layers
+	deletedLayerList: function(req, res) {
+		var userId = req.param('id');
+		Layers.find({
+			userId: userId,
+			isDeleted: true
+		}).exec(function(err, result){
 			if (err) {
 				return res.serverError(err);
 			} else {

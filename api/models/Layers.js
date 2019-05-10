@@ -15,6 +15,7 @@ module.exports = {
     userId: {
         type: 'INTEGER'
     },
+    // should be used for leaflet type
     'type': {
         type: 'STRING',
         defaultsTo: 'group'
@@ -32,6 +33,10 @@ module.exports = {
     status: {
       type: 'STRING',
       defaultsTo: 'draft'
+    },
+    isDeleted: {
+      type: 'BOOLEAN',
+      defaultsTo: false
     },
 
     // Add a reference to markers in MarkerLayers model
