@@ -64,7 +64,6 @@ module.exports = {
 	},
 
 	// Undelete layer (make it active)
-	// Soft delete layer (make it inactive)
 	activateLayer: function (req, res) {
 		var layerId = req.param('layerId');
 		Layers.findOne({id: layerId}).exec(function(err, layer) {
@@ -82,6 +81,31 @@ module.exports = {
 						})
 				}
 		})
+	},
+
+	// Change layer status (only `draft`, `review` and `final` are allowed)
+	changeStatusLayer: function (req, res) {
+		var layerId = req.param('layerId');
+		var layerStatus = req.param('layerStatus');
+		if (layerStatus === 'draft' || layerStatus === 'review' || layerStatus === 'final ') {
+			Layers.findOne({id: layerId}).exec(function(err, layer) {
+				if (err) {
+						return res.negotiate(err);
+				} else if (!layer) {
+						return res.notFound('Layer tidak dapat ditemukan');
+				} else {
+						Layers.update(layerId, {status: layerStatus}).exec(function(err, result){
+							if (err) {
+									return res.serverError(err);
+							} else {
+									return res.ok('layer status berhasil diubah');
+							}
+						})
+				}
+			})
+		} else {
+			return res.badRequest('permintaan anda salah!');
+		}
 	},
 
 	// all layers

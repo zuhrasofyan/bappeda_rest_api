@@ -93,16 +93,13 @@ module.exports.policies = {
     getUserLayersMarkers: ["hasToken", "isAdmin"],
     deactivateLayer: ["hasToken", "isCorrectUserId"],
     activateLayer: ["hasToken", "isCorrectUserId"],
+    changeStatusLayer: true
   },
-  LayerStatusController: {
-    getStatus: true,
-    changeStatus: ["hasToken", "isCorrectUserId"]
-},
   // marker
   MarkerLayersController: {
     saveMarker: ["hasToken", "isCorrectUserId"],
     deleteMarker: ["hasToken", "isCorrectUserId"],
-    getUserMarkers: true
+    getUserMarkers: ["hasToken", "isCorrectUserId"],
   },
 
   // THIS PART ESPECIALLY FOR SURVEY APPLICATION

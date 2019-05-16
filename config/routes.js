@@ -91,9 +91,10 @@ module.exports.routes = {
   'GET /sigap/layer-list/:id' : 'LayersController.layerList',
   'GET /sigap/deleted-layer-list/:id' : 'LayersController.deletedLayerList',
   'GET /sigap/user-marker-per-layer/:id' : 'LayersController.getUserLayersMarkers',
-  'GET /sigap/layer-status' : 'LayerStatusController.getLayerStatus',
   'PATCH /sigap/layer-deactivate/:id/:layerId' : 'LayersController.deactivateLayer',
   'PATCH /sigap/layer-activate/:id/:layerId' : 'LayersController.activateLayer',
+  'PATCH /sigap/layer-status/:id/:layerId' : 'LayersController.changeStatusLayer',
+
   // marker
   'POST /sigap/save-marker/:id' : 'MarkerLayersController.saveMarker',
   'POST /sigap/delete-marker/:id' : 'MarkerLayersController.deleteMarker',
