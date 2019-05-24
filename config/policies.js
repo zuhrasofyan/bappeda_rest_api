@@ -93,7 +93,8 @@ module.exports.policies = {
     getUserLayersMarkers: ["hasToken", "isAdmin"],
     deactivateLayer: ["hasToken", "isCorrectUserId"],
     activateLayer: ["hasToken", "isCorrectUserId"],
-    changeStatusLayer: true
+    changeStatusLayer: true,
+    subscribe: true,
   },
   // marker
   MarkerLayersController: {
