@@ -56,7 +56,8 @@ module.exports.routes = {
   // Admin and officers
   'GET /admin/get-roles' : 'UserRoleController.getRoles',
   'PATCH /admin/change-user-role/:id' : 'UserRoleController.changeRole',
-  'GET /officer/get-all-user' : 'UserController.getAllUser',
+  'GET /officer/get-all-user' : 'AdminController.getAllUser',
+  'GET /officer/get-single-user-data/:id' : 'AdminController.getUser',
 
 
   'GET /desa/all-desa': 'DesaController.getDesa',

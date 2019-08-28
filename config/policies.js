@@ -34,7 +34,6 @@ module.exports.policies = {
   UserController: {
       register: true,
       validateUser: true,
-      getAllUser: ["hasToken", "isOfficer"],
       getUser: ["hasToken", "isCorrectUserId"],
       editUser: ["hasToken", "isCorrectUserId"],
       uploadAvatar: ["hasToken", "isCorrectUserId"],
@@ -51,6 +50,11 @@ module.exports.policies = {
       getQuote: true,
       getProtectedQuote: ["hasToken"]
   },
+  AdminController: {
+    getAllUser: ["hasToken", "isOfficer"],
+    getUser: ["hasToken", "isOfficer"]
+  },
+
   UserRoleController: {
       getRoles: true,
       changeRole: ["hasToken", "isAdmin"]
@@ -90,7 +94,7 @@ module.exports.policies = {
     allLayerList: ["hasToken", "isCorrectUserId"],
     layerList: ["hasToken", "isCorrectUserId"],
     deletedLayerList: ["hasToken", "isCorrectUserId"],
-    getUserLayersMarkers: ["hasToken", "isAdmin"],
+    getUserLayersMarkers: true,
     deactivateLayer: ["hasToken", "isCorrectUserId"],
     activateLayer: ["hasToken", "isCorrectUserId"],
     changeStatusLayer: true,
